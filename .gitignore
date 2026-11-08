@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+node_modules/
+docs/traceability-report.md
+notes.json
+notes.json.lock
