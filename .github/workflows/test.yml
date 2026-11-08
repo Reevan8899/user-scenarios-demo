@@ -1,0 +1,27 @@
+name: Scenario tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scenarios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install test dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Check scenario links
+        run: python scripts/check_scenarios.py
+      - name: Run tests and report coverage by module
+        run: python -m pytest -v --cov=src.scenarios --cov-report=term-missing
